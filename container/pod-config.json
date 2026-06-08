@@ -1,0 +1,11 @@
+{
+  "metadata": {
+    "name": "xxterm-site-pod",
+    "namespace": "default",
+    "labels": {
+      "app": "xxterm-site"
+    }
+  },
+  "log_directory": "/tmp/xxterm-site-pod",
+  "port": [{}]
+}

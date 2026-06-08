@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "name": "xxterm-site"
+  },
+  "image": {
+    "image": "xxterm-site:latest"
+  },
+  "command": ["nginx", "-g", "daemon off;"],
+  "log_path": "xxterm-site.log",
+  "ports": [
+    {
+      "container_port": 80,
+      "protocol": "TCP"
+    }
+  ],
+  "linux": {}
+}
