@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: xxterm-site
+  namespace: xxterm
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod   # 如使用 cert-manager 自动签发证书
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - xxterm.haohanxingchen.cn     # 替换为实际域名
+      secretName: xxterm-site-tls
+  rules:
+    - host: xxterm.haohanxingchen.cn   # 替换为实际域名
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: xxterm-site
+                port:
+                  number: 80
