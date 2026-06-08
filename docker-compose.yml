@@ -1,0 +1,8 @@
+services:
+  xxterm-site:
+    build: .
+    image: xxterm-site:latest
+    container_name: xxterm-site
+    ports:
+      - "8080:80"
+    restart: always

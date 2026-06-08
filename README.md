@@ -32,7 +32,47 @@ npm run preview
 docker build -t xxterm-site:latest .
 
 # 运行容器
-docker run -d -p 8080:80 xxterm-site:latest
+docker run -d --name xxterm-site -p 8080:80 --restart=always xxterm-site:latest
+```
+
+### Docker Compose 部署
+
+```bash
+# 启动服务
+docker compose up -d
+
+# 查看日志
+docker compose logs -f
+
+# 停止并移除
+docker compose down
+
+# 重新构建并启动
+docker compose up -d --build
+```
+
+### 常用容器操作
+
+```bash
+# 查看运行中的容器
+docker ps
+
+# 查看容器日志
+docker logs -f xxterm-site
+
+# 进入容器调试
+docker exec -it xxterm-site sh
+
+# 重启容器
+docker restart xxterm-site
+
+# 停止并删除容器
+docker stop xxterm-site && docker rm xxterm-site
+
+# 更新部署：拉取新镜像 → 停旧容器 → 启新容器
+docker pull xxterm-site:latest
+docker stop xxterm-site && docker rm xxterm-site
+docker run -d --name xxterm-site -p 8080:80 --restart=always xxterm-site:latest
 ```
 
 ## Kubernetes 部署
@@ -57,6 +97,7 @@ kubectl apply -f k8s/
 
 ```
 ├── Dockerfile           # 多阶段构建 (Node → Nginx)
+├── docker-compose.yml   # Docker Compose 编排
 ├── nginx.conf           # SPA 路由回退 + gzip + 缓存策略
 ├── k8s/                 # Kubernetes 部署清单
 ├── public/              # 静态资源
