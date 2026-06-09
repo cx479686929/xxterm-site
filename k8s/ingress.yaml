@@ -4,16 +4,11 @@ metadata:
   name: xxterm-site
   namespace: xxterm
   annotations:
-    nginx.ingress.kubernetes.io/ssl-redirect: "true"
-    cert-manager.io/cluster-issuer: letsencrypt-prod   # 如使用 cert-manager 自动签发证书
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.class: nginx    # 兼容旧版 Ingress Controller 写法
 spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - xxterm.haohanxingchen.cn     # 替换为实际域名
-      secretName: xxterm-site-tls
   rules:
-    - host: xxterm.haohanxingchen.cn   # 替换为实际域名
+    - host: xxterm.haohanxingchen.cn
       http:
         paths:
           - path: /

@@ -18,6 +18,7 @@ spec:
       containers:
         - name: xxterm-site
           image: xxterm-site:latest   # 替换为实际镜像地址，如 registry.example.com/xxterm-site:latest
+          imagePullPolicy: IfNotPresent  # 本地镜像存在则不拉取，避免 latest 标签默认 Always 去远程拉取
           ports:
             - containerPort: 80
               protocol: TCP
